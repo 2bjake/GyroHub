@@ -8,8 +8,26 @@
 
 import SpriteKit
 
-class CharacterNode: SKSpriteNode {
+class CharacterNode: SKShapeNode {
+    private let movementSpeed = CGFloat(100)
+
     convenience init(size: CGSize) {
-        self.init(color: .blue, size: size)
+        self.init(circleOfRadius: size.width / 2)
+        fillColor = .blue
+        physicsBody = .init(circleOfRadius: size.width / 2)
+        physicsBody?.allowsRotation = false
+        physicsBody?.categoryBitMask = BitMask(.character)
+        physicsBody?.contactTestBitMask = BitMask(.wall)
+    }
+
+    public func update(deltaTime: TimeInterval, touchDirection: TouchDirection) {
+        switch touchDirection {
+        case .left:
+            physicsBody?.velocity.dx = -movementSpeed
+        case .right:
+            physicsBody?.velocity.dx = movementSpeed
+        default:
+            physicsBody?.velocity.dx = 0
+        }
     }
 }

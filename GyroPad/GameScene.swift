@@ -9,52 +9,86 @@
 import SpriteKit
 import GameplayKit
 
-class GameScene: SKScene {
+enum TouchDirection {
+    case up, down, left, right, none
 
-    var characterNode = CharacterNode(size: .init(width: 50, height: 50))
-    var tileMapNode: SKTileMapNode!
+    static func directionFor(start: CGPoint?, current: CGPoint?) -> TouchDirection {
+        guard let start = start, let current = current else { return .none }
+
+        let xDiff = current.x - start.x
+        let yDiff = current.y - start.y
+
+        if abs(xDiff) > abs(yDiff) {
+            return xDiff < 0 ? .left : .right
+        } else {
+            return yDiff < 0 ? .up : .down
+        }
+    }
+}
+
+class GameScene: SKScene {
+    private var lastUpdateTime = TimeInterval(0)
+
+    private var characterNode = CharacterNode(size: .init(width: 50, height: 50))
+    private lazy var tileMapNode = childNode(withName: "TileMap") as! SKTileMapNode
+    private lazy var map = GameMap(tileMapNode: tileMapNode)
+
+    // for tracking movement touches
+    private var touchStartPosition: CGPoint?
+    private var touchCurrentPosition: CGPoint?
+
+    private var currentTouchDirection: TouchDirection {
+        return .directionFor(start: touchStartPosition, current: touchCurrentPosition)
+    }
 
     override func sceneDidLoad() {
-        for child in children {
-            if let node = child as? SKTileMapNode {
-                tileMapNode = node
-                break
-            }
-
-        }
+        physicsWorld.contactDelegate = self
     }
 
     override func didMove(to view: SKView) {
-        characterNode.anchorPoint = CGPoint(x: 0.5, y: 0.5)
+        //characterNode.anchorPoint = CGPoint(x: 0.5, y: 0.5)
+        characterNode.position = map.pointFor(column: 9, row: 13)
         addChild(characterNode)
     }
 
     override func update(_ currentTime: TimeInterval) {
-        // Called before each frame is rendered
-    }
 
-    private func inBoundsTileCoordforPoint(_ point: CGPoint) -> (row: Int, col: Int) {
-        var col = tileMapNode.tileColumnIndex(fromPosition: point)
-                if col < 0 { col = 0 }
-                if col >= tileMapNode.numberOfColumns { col = tileMapNode.numberOfColumns - 1 }
+        // Initialize _lastUpdateTime if it has not already been
+        if (self.lastUpdateTime == 0) {
+            self.lastUpdateTime = currentTime
+        }
 
-        var row = tileMapNode.tileRowIndex(fromPosition: point)
-                if row < 0 { row = 0 }
-                if row >= tileMapNode.numberOfRows { row = tileMapNode.numberOfRows - 1 }
+        // Calculate time since last update
+        let dt = currentTime - self.lastUpdateTime
 
-        return (row, col)
+        characterNode.update(deltaTime: dt, touchDirection: currentTouchDirection)
     }
 
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         guard let touch = touches.first else { return }
-        let tilePosition = inBoundsTileCoordforPoint(touch.location(in: tileMapNode))
-        if let definition = tileMapNode.tileDefinition(atColumn: tilePosition.col, row: tilePosition.row),
-            let isEdge = definition.userData?.value(forKey: "isEdge") as? Bool {
-            // TODO: don't move here, this is a wall...
-            return
-        }
-        let newPosition = tileMapNode.centerOfTile(atColumn: tilePosition.col, row: tilePosition.row)
-        characterNode.run(.move(to: newPosition, duration: 1))
+        touchStartPosition = touch.location(in: self)
 
+        map.touchBegan(touch)
+    }
+
+    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+        guard let touch = touches.first else { return }
+        touchCurrentPosition = touch.location(in: self)
+    }
+
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        touchStartPosition = nil
+        touchCurrentPosition = nil
+    }
+
+    override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
+        touchStartPosition = nil
+        touchCurrentPosition = nil
+    }
+}
+
+extension GameScene: SKPhysicsContactDelegate {
+    func didBegin(_ contact: SKPhysicsContact) {
+        print("contact between \(contact.bodyA.category) and \(contact.bodyB.category)")
     }
 }

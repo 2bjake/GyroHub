@@ -18,6 +18,8 @@
 		231172BF22C162B100C7053B /* GyroPadUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 231172BE22C162B100C7053B /* GyroPadUITests.swift */; };
 		231172CD22C18B5D00C7053B /* CharacterNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 231172CC22C18B5D00C7053B /* CharacterNode.swift */; };
 		231172CF22C18C6400C7053B /* GyroTileSet.sks in Resources */ = {isa = PBXBuildFile; fileRef = 231172CE22C18C6400C7053B /* GyroTileSet.sks */; };
+		231172D522C2608100C7053B /* GameMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 231172D422C2608100C7053B /* GameMap.swift */; };
+		231172D722C26C8C00C7053B /* PhysicsCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 231172D622C26C8C00C7053B /* PhysicsCategory.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +57,8 @@
 		231172C022C162B100C7053B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		231172CC22C18B5D00C7053B /* CharacterNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterNode.swift; sourceTree = "<group>"; };
 		231172CE22C18C6400C7053B /* GyroTileSet.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GyroTileSet.sks; sourceTree = "<group>"; };
+		231172D422C2608100C7053B /* GameMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameMap.swift; sourceTree = "<group>"; };
+		231172D622C26C8C00C7053B /* PhysicsCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhysicsCategory.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,6 +119,8 @@
 				231172AA22C162B100C7053B /* Info.plist */,
 				231172CC22C18B5D00C7053B /* CharacterNode.swift */,
 				231172CE22C18C6400C7053B /* GyroTileSet.sks */,
+				231172D422C2608100C7053B /* GameMap.swift */,
+				231172D622C26C8C00C7053B /* PhysicsCategory.swift */,
 			);
 			path = GyroPad;
 			sourceTree = "<group>";
@@ -270,8 +276,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				231172D522C2608100C7053B /* GameMap.swift in Sources */,
 				2311729F22C162B000C7053B /* GameScene.swift in Sources */,
 				231172CD22C18B5D00C7053B /* CharacterNode.swift in Sources */,
+				231172D722C26C8C00C7053B /* PhysicsCategory.swift in Sources */,
 				231172A122C162B000C7053B /* GameViewController.swift in Sources */,
 				2311729922C162B000C7053B /* AppDelegate.swift in Sources */,
 			);
