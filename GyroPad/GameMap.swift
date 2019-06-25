@@ -8,7 +8,13 @@
 
 import SpriteKit
 
+//constants
+private let isEdgeKey = "isEdge"
+private let isClimbableKey = "isClimbable"
 
+struct TileProperties {
+    //TODO
+}
 
 class GameMap {
     struct Coordinates {
@@ -23,65 +29,43 @@ class GameMap {
 
     var tileMapNode: SKTileMapNode
 
-//    init(tileMapNode: SKTileMapNode) {
-//        self.tileMapNode = tileMapNode
-//
-//
-//        let tileSize = tileMapNode.tileSize
-//        let halfWidth = CGFloat(tileMapNode.numberOfColumns) / 2.0 * tileSize.width
-//        let halfHeight = CGFloat(tileMapNode.numberOfRows) / 2.0 * tileSize.height
-//
-//        for col in 0..<tileMapNode.numberOfColumns {
-//            for row in 0..<tileMapNode.numberOfRows {
-//
-//                let tileDefinition = tileMapNode.tileDefinition(atColumn: col, row: row)
-//                let isEdgeTile = tileDefinition?.userData?["isEdge"] as? Bool ?? false
-//
-//                if isEdgeTile {
-//                    let x = CGFloat(col) * tileSize.width - halfWidth
-//                    let y = CGFloat(row) * tileSize.height - halfHeight
-//                    let rect = CGRect(x: 0, y: 0, width: tileSize.width, height: tileSize.height)
-//                    let tileNode = SKShapeNode(rect: rect)
-//                    tileNode.position = CGPoint(x: x, y: y)
-//                    tileNode.physicsBody = SKPhysicsBody.init(rectangleOf: tileSize, center: CGPoint(x: tileSize.width / 2.0, y: tileSize.height / 2.0))
-//                    tileNode.physicsBody?.isDynamic = false
-//                    //tileNode.physicsBody?.collisionBitMask = playerCollisionMask | wallCollisionMask
-//                    //tileNode.physicsBody?.categoryBitMask = wallCollisionMask
-//                    tileMapNode.addChild(tileNode)
-//                }
-//            }
-//        }
-//    }
+    private var tileSize: CGSize { return tileMapNode.tileSize }
+    private var halfTileWidth: CGFloat { return tileSize.width / 2 }
+    private var halfTileHeight: CGFloat { return tileSize.height / 2 }
 
     init(tileMapNode: SKTileMapNode) {
         self.tileMapNode = tileMapNode
-
-
-        let tileSize = tileMapNode.tileSize
-        let halfWidth = tileSize.width / 2.0
-        let halfHeight = tileSize.height / 2.0
 
         for col in 0..<tileMapNode.numberOfColumns {
             for row in 0..<tileMapNode.numberOfRows {
 
                 let tileDefinition = tileMapNode.tileDefinition(atColumn: col, row: row)
-                let isEdgeTile = tileDefinition?.userData?["isEdge"] as? Bool ?? false
 
-                if isEdgeTile {
-                    let centerPoint = tileMapNode.centerOfTile(atColumn: col, row: row)
-
-                    let tileNode = SKShapeNode(rect: CGRect(x: 0, y: 0, width: tileSize.width, height: tileSize.height))
-                    tileNode.position = CGPoint(x: centerPoint.x - halfWidth, y: centerPoint.y - halfHeight)
-                    tileNode.physicsBody = SKPhysicsBody.init(rectangleOf: tileSize, center: CGPoint(x: halfWidth, y: halfHeight))
-                    tileNode.physicsBody?.linearDamping = 0.6
-                    tileNode.physicsBody?.restitution = 0.0
-                    tileNode.physicsBody?.isDynamic = false
-                    tileNode.physicsBody?.categoryBitMask = BitMask(.wall)
-                    tileNode.physicsBody?.contactTestBitMask = BitMask(.character)
-                    tileMapNode.addChild(tileNode)
+                if tileDefinition?.userData?[isEdgeKey] as? Bool ?? false {
+                    makeEdgeNodeAt(column: col, row: row)
                 }
             }
         }
+    }
+
+    func makeEdgeNodeAt(column: Int, row: Int ) {
+        let centerPoint = tileMapNode.centerOfTile(atColumn: column, row: row)
+
+        let tileNode = SKShapeNode(rect: CGRect(x: 0, y: 0, width: tileSize.width, height: tileSize.height))
+        tileNode.position = CGPoint(x: centerPoint.x - halfTileWidth, y: centerPoint.y - halfTileHeight)
+        tileNode.physicsBody = SKPhysicsBody.init(rectangleOf: tileSize, center: CGPoint(x: halfTileWidth, y: halfTileHeight))
+        tileNode.physicsBody?.linearDamping = 0.6
+        tileNode.physicsBody?.restitution = 0.0
+        tileNode.physicsBody?.isDynamic = false
+        tileNode.physicsBody?.categoryBitMask = BitMask(.wall)
+        tileNode.physicsBody?.contactTestBitMask = BitMask(.character)
+        tileMapNode.addChild(tileNode)
+    }
+
+    func isRopeAtPoint(_ point: CGPoint) -> Bool {
+        let coords = coordinatesforPoint(point)
+        let definition = tileMapNode.tileDefinition(atColumn: coords.column, row: coords.row)
+        return definition?.userData?[isClimbableKey] as? Bool ?? false
     }
 
     func coordinatesforPoint(_ point: CGPoint) -> Coordinates {

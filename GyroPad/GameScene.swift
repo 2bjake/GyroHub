@@ -61,7 +61,7 @@ class GameScene: SKScene {
         // Calculate time since last update
         let dt = currentTime - self.lastUpdateTime
 
-        characterNode.update(deltaTime: dt, touchDirection: currentTouchDirection)
+        characterNode.update(deltaTime: dt, touchDirection: currentTouchDirection, isAtRope: map.isRopeAtPoint(characterNode.position))
     }
 
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
