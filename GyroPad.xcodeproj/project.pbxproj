@@ -110,17 +110,17 @@
 			isa = PBXGroup;
 			children = (
 				2311729822C162B000C7053B /* AppDelegate.swift */,
+				231172CC22C18B5D00C7053B /* CharacterNode.swift */,
+				231172D422C2608100C7053B /* GameMap.swift */,
 				2311729A22C162B000C7053B /* GameScene.sks */,
 				2311729E22C162B000C7053B /* GameScene.swift */,
 				231172A022C162B000C7053B /* GameViewController.swift */,
+				231172D622C26C8C00C7053B /* PhysicsCategory.swift */,
 				231172A222C162B000C7053B /* Main.storyboard */,
 				231172A522C162B100C7053B /* Assets.xcassets */,
+				231172CE22C18C6400C7053B /* GyroTileSet.sks */,
 				231172A722C162B100C7053B /* LaunchScreen.storyboard */,
 				231172AA22C162B100C7053B /* Info.plist */,
-				231172CC22C18B5D00C7053B /* CharacterNode.swift */,
-				231172CE22C18C6400C7053B /* GyroTileSet.sks */,
-				231172D422C2608100C7053B /* GameMap.swift */,
-				231172D622C26C8C00C7053B /* PhysicsCategory.swift */,
 			);
 			path = GyroPad;
 			sourceTree = "<group>";

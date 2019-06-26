@@ -10,11 +10,11 @@ import SpriteKit
 
 // constants
 private let buffer = CGFloat(5)
-private let movementSpeed = CGFloat(100)
+private let movementSpeed = CGFloat(200)
 
 class CharacterNode: SKShapeNode {
     convenience init(size: CGSize) {
-        let radius = size.width / 2 - buffer
+        let radius = size.width / 4
         self.init(circleOfRadius: radius)
         fillColor = .blue
         physicsBody = .init(circleOfRadius: radius)

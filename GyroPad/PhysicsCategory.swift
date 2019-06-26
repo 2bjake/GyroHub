@@ -75,6 +75,7 @@ extension SKPhysicsContact {
 extension PhysicsCategory {
     static let character = PhysicsCategory(shift: 1)
     static let wall = PhysicsCategory(shift: 2)
+    static let pipe = PhysicsCategory(shift: 3)
 }
 
 extension PhysicsCategory: CustomStringConvertible {
@@ -84,6 +85,8 @@ extension PhysicsCategory: CustomStringConvertible {
             return "character"
         case .wall:
             return "wall"
+        case .pipe:
+            return "pipe"
         default:
             return String(bitMask)
         }
