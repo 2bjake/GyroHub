@@ -72,6 +72,7 @@ class MapWriter {
             }
         }
 
+        //HACK: pipes have to be drawn first else map gets screwed up
         mapString.split(separator: "\n").enumerated().forEach { lineIndex, line in
             line.enumerated().forEach { charIndex, char in
                 let tileGroup = MapElement(rawValue: char)?.tileGroup

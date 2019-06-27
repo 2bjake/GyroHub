@@ -14,9 +14,9 @@ private let isClimbableKey = "isClimbable"
 private let pipePartKey = "pipePart"
 
 enum PipePart: Int {
-    case top = 2
-    case center = 1
     case bottom = 0
+    case center = 1
+    case top = 2
 }
 
 struct TileProperties {
@@ -48,7 +48,7 @@ extension TileProperties {
                               pipePart: pipePart)
     }
 
-    static func at(coordinates: GameMap.Coordinates, in tileMapNode: SKTileMapNode) -> TileProperties {
+    static func at(coordinates: MapCoordinates, in tileMapNode: SKTileMapNode) -> TileProperties {
         return .at(column: coordinates.column, row: coordinates.row, in: tileMapNode)
     }
 }

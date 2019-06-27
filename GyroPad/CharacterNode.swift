@@ -31,7 +31,6 @@ class CharacterNode: SKShapeNode {
             physicsBody?.affectedByGravity = true
         }
 
-
         switch touchDirection {
         case .left:
             physicsBody?.velocity.dx = -movementSpeed

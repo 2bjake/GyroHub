@@ -23,6 +23,8 @@
 		231172D922C41D2E00C7053B /* TileProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 231172D822C41D2E00C7053B /* TileProperties.swift */; };
 		231172DC22C4592B00C7053B /* MapWriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 231172DB22C4592B00C7053B /* MapWriter.swift */; };
 		231172DE22C465BF00C7053B /* EmptyGameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 231172DD22C465BF00C7053B /* EmptyGameScene.sks */; };
+		231172E022C4F1AC00C7053B /* MapCoordinates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 231172DF22C4F1AC00C7053B /* MapCoordinates.swift */; };
+		231172E222C4F47000C7053B /* PhysicsCategory+GyroMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 231172E122C4F47000C7053B /* PhysicsCategory+GyroMap.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,6 +67,8 @@
 		231172D822C41D2E00C7053B /* TileProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TileProperties.swift; sourceTree = "<group>"; };
 		231172DB22C4592B00C7053B /* MapWriter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapWriter.swift; sourceTree = "<group>"; };
 		231172DD22C465BF00C7053B /* EmptyGameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = EmptyGameScene.sks; sourceTree = "<group>"; };
+		231172DF22C4F1AC00C7053B /* MapCoordinates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapCoordinates.swift; sourceTree = "<group>"; };
+		231172E122C4F47000C7053B /* PhysicsCategory+GyroMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PhysicsCategory+GyroMap.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,6 +127,7 @@
 				231172DD22C465BF00C7053B /* EmptyGameScene.sks */,
 				231172A022C162B000C7053B /* GameViewController.swift */,
 				231172D622C26C8C00C7053B /* PhysicsCategory.swift */,
+				231172E122C4F47000C7053B /* PhysicsCategory+GyroMap.swift */,
 				231172A222C162B000C7053B /* Main.storyboard */,
 				231172A522C162B100C7053B /* Assets.xcassets */,
 				231172CE22C18C6400C7053B /* GyroTileSet.sks */,
@@ -156,6 +161,7 @@
 				231172D822C41D2E00C7053B /* TileProperties.swift */,
 				231172D422C2608100C7053B /* GameMap.swift */,
 				231172DB22C4592B00C7053B /* MapWriter.swift */,
+				231172DF22C4F1AC00C7053B /* MapCoordinates.swift */,
 			);
 			path = Map;
 			sourceTree = "<group>";
@@ -297,11 +303,13 @@
 				231172D522C2608100C7053B /* GameMap.swift in Sources */,
 				2311729F22C162B000C7053B /* GameScene.swift in Sources */,
 				231172CD22C18B5D00C7053B /* CharacterNode.swift in Sources */,
+				231172E022C4F1AC00C7053B /* MapCoordinates.swift in Sources */,
 				231172D722C26C8C00C7053B /* PhysicsCategory.swift in Sources */,
 				231172D922C41D2E00C7053B /* TileProperties.swift in Sources */,
 				231172DC22C4592B00C7053B /* MapWriter.swift in Sources */,
 				231172A122C162B000C7053B /* GameViewController.swift in Sources */,
 				2311729922C162B000C7053B /* AppDelegate.swift in Sources */,
+				231172E222C4F47000C7053B /* PhysicsCategory+GyroMap.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -51,7 +51,6 @@ class GameScene: SKScene {
     }
 
     override func didMove(to view: SKView) {
-        //characterNode.anchorPoint = CGPoint(x: 0.5, y: 0.5)
         characterNode.position = map.pointFor(column: 9, row: 13)
         addChild(characterNode)
     }
@@ -61,16 +60,16 @@ class GameScene: SKScene {
             lastUpdateTime = currentTime
         }
 
-        // Calculate time since last update
         let dt = currentTime - lastUpdateTime
 
-        characterNode.update(deltaTime: dt, touchDirection: currentTouchDirection, isAtRope: map.isRopeAtPoint(characterNode.position))
+        characterNode.update(deltaTime: dt,
+                             touchDirection: currentTouchDirection,
+                             isAtRope: map.isRopeAtPoint(characterNode.position))
     }
 
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         guard let touch = touches.first else { return }
         touchStartPosition = touch.location(in: self)
-
         map.touchBegan(touch)
     }
 

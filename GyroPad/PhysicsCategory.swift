@@ -69,26 +69,3 @@ extension SKPhysicsContact {
         }
     }
 }
-
-/// Game specific code
-
-extension PhysicsCategory {
-    static let character = PhysicsCategory(shift: 1)
-    static let wall = PhysicsCategory(shift: 2)
-    static let pipe = PhysicsCategory(shift: 3)
-}
-
-extension PhysicsCategory: CustomStringConvertible {
-    var description: String {
-        switch self {
-        case .character:
-            return "character"
-        case .wall:
-            return "wall"
-        case .pipe:
-            return "pipe"
-        default:
-            return String(bitMask)
-        }
-    }
-}
