@@ -8,26 +8,6 @@
 
 import SpriteKit
 
-/*
- let tileSet = SKTileSet(named: "Sample Grid Tile Set")!
-
- var waterTiles: SKTileGroup {
- return tileSet.tileGroups.first { $0.name == "Water" }!
- }
-
- var grassTiles: SKTileGroup {
- return tileSet.tileGroups.first { $0.name == "Grass" }!
- }
-
- var sandTiles: SKTileGroup {
- return tileSet.tileGroups.first { $0.name == "Sand" }!
- }
-
- var cobblestoneTiles: SKTileGroup {
- return tileSet.tileGroups.first { $0.name == "Cobblestone" }!
- }
- */
-
 enum MapElement: Character {
     case empty = "."
     case rope = "|"
@@ -40,9 +20,9 @@ enum MapElement: Character {
         }
         switch self {
         case .rope:
-            return tileSet.tileGroups.first { $0.name == "Cobblestone" }
+            return tileSet.tileGroups.first { $0.name == "Rope" }
         case .ground:
-            return tileSet.tileGroups.first { $0.name == "Sand" }
+            return tileSet.tileGroups.first { $0.name == "Ground" }
         case .greenPipe:
             return tileSet.tileGroups.first { $0.name == "Pipe" }
         default:

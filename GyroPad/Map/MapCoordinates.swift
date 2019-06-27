@@ -26,7 +26,7 @@ extension MapCoordinates {
     }
 
     func clamped(tileMapNode: SKTileMapNode) -> MapCoordinates {
-        return self.clamped(numberOfColumns: tileMapNode.numberOfColumns, numberOfRows: tileMapNode.numberOfRows)
+        return clamped(numberOfColumns: tileMapNode.numberOfColumns, numberOfRows: tileMapNode.numberOfRows)
     }
 }
 

@@ -17,8 +17,10 @@ private enum RenderPercentages {
     static let anchorWidth = CGFloat(0.12)
 }
 
+//TODO: this needs to more than just a wrapper around the tileMapNode.
+// it also needs to model all of the (initial?) positions of game elements
+// that are not part of the tilemap such as: character, smicks, pipes, coins, door(?)
 class GameMap {
-
     private let tileMapNode: SKTileMapNode
 
     init(tileMapNode: SKTileMapNode) {
