@@ -9,7 +9,7 @@
 import SpriteKit
 
 //constants
-private let isEdgeKey = "isEdge"
+private let isGroundKey = "isGround"
 private let isClimbableKey = "isClimbable"
 private let pipePartKey = "pipePart"
 
@@ -20,7 +20,7 @@ enum PipePart: Int {
 }
 
 struct TileProperties {
-    let isEdge: Bool
+    let isGround: Bool
     let isClimbable: Bool
     let pipePart: PipePart?
     var isPipe: Bool { return pipePart != nil }
@@ -43,7 +43,7 @@ extension TileProperties {
             return PipePart(rawValue: positionValue)
         }()
 
-        return TileProperties(isEdge: boolForKey(isEdgeKey),
+        return TileProperties(isGround: boolForKey(isGroundKey),
                               isClimbable: boolForKey(isClimbableKey),
                               pipePart: pipePart)
     }

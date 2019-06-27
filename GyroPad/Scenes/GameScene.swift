@@ -30,8 +30,7 @@ class GameScene: SKScene {
     private var lastUpdateTime = TimeInterval(0)
 
     private var characterNode = CharacterNode(size: .init(width: 50, height: 50))
-    private var tileMapNode: SKTileMapNode!
-    private lazy var map = GameMap(tileMapNode: tileMapNode)
+    private var map: GameMap!
 
     // for tracking movement touches
     private var touchStartPosition: CGPoint?
@@ -43,19 +42,18 @@ class GameScene: SKScene {
 
     override func sceneDidLoad() {
         physicsWorld.contactDelegate = self
+
         guard let tileSet = SKTileSet(named: "GyroTileSet") else {
             fatalError("could not load tileSet")
         }
-        tileSet.defaultTileGroup = tileSet.tileGroups.first { $0.name == "Empty" }
+        tileSet.defaultTileGroup = tileSet.tileGroupNamed(.empty)
 
-        tileMapNode = SKTileMapNode(tileSet: tileSet, columns: 20, rows: 15, tileSize: CGSize(width: 50, height: 50))
-        addChild(tileMapNode)
-
-        MapWriter().drawMap(tileMapNode)
+        map = MapBuilder().buildMap(tileSet: tileSet)
+        addChild(map.tileMapNode)
     }
 
     override func didMove(to view: SKView) {
-        characterNode.position = map.pointFor(column: 9, row: 13)
+        characterNode.position = map.pointFor(coordinates: map.initialCharacterCoords)
         addChild(characterNode)
     }
 

@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "GyroPad/Map/MapWriter.swift"
-            timestampString = "583338770.841715"
+            timestampString = "583342265.006561"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "49"
-            endingLineNumber = "49"
+            startingLineNumber = "62"
+            endingLineNumber = "62"
             landmarkName = "drawMap(_:)"
             landmarkType = "7">
          </BreakpointContent>

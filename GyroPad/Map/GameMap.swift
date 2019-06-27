@@ -21,17 +21,19 @@ private enum RenderPercentages {
 // it also needs to model all of the (initial?) positions of game elements
 // that are not part of the tilemap such as: character, smicks, pipes, coins, door(?)
 class GameMap {
-    private let tileMapNode: SKTileMapNode
+    let tileMapNode: SKTileMapNode
+    let initialCharacterCoords: MapCoordinates
 
-    init(tileMapNode: SKTileMapNode) {
+    init(initialCharacterCoords: MapCoordinates, tileMapNode: SKTileMapNode) {
+        self.initialCharacterCoords = initialCharacterCoords
         self.tileMapNode = tileMapNode
 
         var pipeTopLocations = [MapCoordinates]()
         for column in 0..<tileMapNode.numberOfColumns {
             for row in 0..<tileMapNode.numberOfRows {
                 let properties = TileProperties.at(column: column, row: row, in: tileMapNode)
-                if properties.isEdge {
-                    makeWallNodeAt(column: column, row: row)
+                if properties.isGround {
+                    makeGroundNodeAt(column: column, row: row)
                 } else if properties.pipePart == .top {
                     pipeTopLocations.append(MapCoordinates(column: column, row: row))
                 }
@@ -89,11 +91,11 @@ class GameMap {
         tileNode.physicsBody?.restitution = 0.0
         tileNode.physicsBody?.isDynamic = false
         tileNode.physicsBody?.categoryBitMask = BitMask(.pipe)
-        tileNode.physicsBody?.contactTestBitMask = BitMask(.character | .wall)
+        tileNode.physicsBody?.contactTestBitMask = BitMask(.character | .ground)
         tileMapNode.addChild(tileNode)
     }
 
-    private func makeWallNodeAt(column: Int, row: Int) {
+    private func makeGroundNodeAt(column: Int, row: Int) {
         let tileSize = tileMapNode.tileSize
         let halfTileWidth = CGFloat(tileSize.width / 2)
         let halfTileHeight = CGFloat(tileSize.height / 2)
@@ -107,7 +109,7 @@ class GameMap {
         tileNode.physicsBody?.linearDamping = 0.6
         tileNode.physicsBody?.restitution = 0.0
         tileNode.physicsBody?.isDynamic = false
-        tileNode.physicsBody?.categoryBitMask = BitMask(.wall)
+        tileNode.physicsBody?.categoryBitMask = BitMask(.ground)
         tileNode.physicsBody?.contactTestBitMask = BitMask(.character | .pipe)
         tileMapNode.addChild(tileNode)
     }

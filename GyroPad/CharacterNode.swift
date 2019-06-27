@@ -20,7 +20,7 @@ class CharacterNode: SKShapeNode {
         physicsBody = .init(circleOfRadius: radius)
         physicsBody?.allowsRotation = false
         physicsBody?.categoryBitMask = BitMask(.character)
-        physicsBody?.contactTestBitMask = BitMask(.wall)
+        physicsBody?.contactTestBitMask = BitMask(.ground)
     }
 
     public func update(deltaTime: TimeInterval, touchDirection: TouchDirection, isAtRope: Bool) {

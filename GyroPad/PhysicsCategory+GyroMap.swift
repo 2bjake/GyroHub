@@ -10,7 +10,7 @@ import SpriteKit
 
 extension PhysicsCategory {
     static let character = PhysicsCategory(shift: 1)
-    static let wall = PhysicsCategory(shift: 2)
+    static let ground = PhysicsCategory(shift: 2)
     static let pipe = PhysicsCategory(shift: 3)
 }
 
@@ -19,8 +19,8 @@ extension PhysicsCategory: CustomStringConvertible {
         switch self {
         case .character:
             return "character"
-        case .wall:
-            return "wall"
+        case .ground:
+            return "ground"
         case .pipe:
             return "pipe"
         default:

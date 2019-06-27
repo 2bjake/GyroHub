@@ -21,7 +21,7 @@
 		231172D522C2608100C7053B /* GameMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 231172D422C2608100C7053B /* GameMap.swift */; };
 		231172D722C26C8C00C7053B /* PhysicsCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 231172D622C26C8C00C7053B /* PhysicsCategory.swift */; };
 		231172D922C41D2E00C7053B /* TileProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 231172D822C41D2E00C7053B /* TileProperties.swift */; };
-		231172DC22C4592B00C7053B /* MapWriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 231172DB22C4592B00C7053B /* MapWriter.swift */; };
+		231172DC22C4592B00C7053B /* MapBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 231172DB22C4592B00C7053B /* MapBuilder.swift */; };
 		231172E022C4F1AC00C7053B /* MapCoordinates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 231172DF22C4F1AC00C7053B /* MapCoordinates.swift */; };
 		231172E222C4F47000C7053B /* PhysicsCategory+GyroMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 231172E122C4F47000C7053B /* PhysicsCategory+GyroMap.swift */; };
 		238C3DA322C50D7E0077CA2B /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 238C3DA222C50D7E0077CA2B /* GameScene.sks */; };
@@ -65,7 +65,7 @@
 		231172D422C2608100C7053B /* GameMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameMap.swift; sourceTree = "<group>"; };
 		231172D622C26C8C00C7053B /* PhysicsCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhysicsCategory.swift; sourceTree = "<group>"; };
 		231172D822C41D2E00C7053B /* TileProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TileProperties.swift; sourceTree = "<group>"; };
-		231172DB22C4592B00C7053B /* MapWriter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapWriter.swift; sourceTree = "<group>"; };
+		231172DB22C4592B00C7053B /* MapBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapBuilder.swift; sourceTree = "<group>"; };
 		231172DF22C4F1AC00C7053B /* MapCoordinates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapCoordinates.swift; sourceTree = "<group>"; };
 		231172E122C4F47000C7053B /* PhysicsCategory+GyroMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PhysicsCategory+GyroMap.swift"; sourceTree = "<group>"; };
 		238C3DA222C50D7E0077CA2B /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
@@ -158,7 +158,7 @@
 			children = (
 				231172D822C41D2E00C7053B /* TileProperties.swift */,
 				231172D422C2608100C7053B /* GameMap.swift */,
-				231172DB22C4592B00C7053B /* MapWriter.swift */,
+				231172DB22C4592B00C7053B /* MapBuilder.swift */,
 				231172DF22C4F1AC00C7053B /* MapCoordinates.swift */,
 			);
 			path = Map;
@@ -314,7 +314,7 @@
 				231172E022C4F1AC00C7053B /* MapCoordinates.swift in Sources */,
 				231172D722C26C8C00C7053B /* PhysicsCategory.swift in Sources */,
 				231172D922C41D2E00C7053B /* TileProperties.swift in Sources */,
-				231172DC22C4592B00C7053B /* MapWriter.swift in Sources */,
+				231172DC22C4592B00C7053B /* MapBuilder.swift in Sources */,
 				231172A122C162B000C7053B /* GameViewController.swift in Sources */,
 				2311729922C162B000C7053B /* AppDelegate.swift in Sources */,
 				231172E222C4F47000C7053B /* PhysicsCategory+GyroMap.swift in Sources */,
