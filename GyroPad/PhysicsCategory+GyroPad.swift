@@ -1,5 +1,5 @@
 //
-//  PhysicsCategory+GyroMap.swift
+//  PhysicsCategory+GyroPad.swift
 //  GyroPad
 //
 //  Created by Jake Foster on 6/27/19.
