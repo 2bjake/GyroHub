@@ -43,6 +43,11 @@ class GameScene: SKScene {
 
     override func sceneDidLoad() {
         physicsWorld.contactDelegate = self
+        guard let tileSet = SKTileSet(named: "GyroTileSet") else {
+            fatalError("could not load tileSet")
+        }
+        tileSet.defaultTileGroup = tileSet.tileGroups.first { $0.name == "Empty" }
+        MapWriter().drawMap(tileMapNode)
     }
 
     override func didMove(to view: SKView) {
@@ -52,14 +57,12 @@ class GameScene: SKScene {
     }
 
     override func update(_ currentTime: TimeInterval) {
-
-        // Initialize _lastUpdateTime if it has not already been
-        if (self.lastUpdateTime == 0) {
-            self.lastUpdateTime = currentTime
+        if lastUpdateTime == 0 {
+            lastUpdateTime = currentTime
         }
 
         // Calculate time since last update
-        let dt = currentTime - self.lastUpdateTime
+        let dt = currentTime - lastUpdateTime
 
         characterNode.update(deltaTime: dt, touchDirection: currentTouchDirection, isAtRope: map.isRopeAtPoint(characterNode.position))
     }
