@@ -30,7 +30,7 @@ class GameScene: SKScene {
     private var lastUpdateTime = TimeInterval(0)
 
     private var characterNode = CharacterNode(size: .init(width: 50, height: 50))
-    private lazy var tileMapNode = childNode(withName: "TileMap") as! SKTileMapNode
+    private var tileMapNode: SKTileMapNode!
     private lazy var map = GameMap(tileMapNode: tileMapNode)
 
     // for tracking movement touches
@@ -47,6 +47,10 @@ class GameScene: SKScene {
             fatalError("could not load tileSet")
         }
         tileSet.defaultTileGroup = tileSet.tileGroups.first { $0.name == "Empty" }
+
+        tileMapNode = SKTileMapNode(tileSet: tileSet, columns: 20, rows: 15, tileSize: CGSize(width: 50, height: 50))
+        addChild(tileMapNode)
+
         MapWriter().drawMap(tileMapNode)
     }
 

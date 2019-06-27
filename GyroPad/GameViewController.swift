@@ -16,7 +16,7 @@ class GameViewController: UIViewController {
         super.viewDidLoad()
 
         guard let view = view as! SKView?,
-            let scene = SKScene(fileNamed: "EmptyGameScene") else {
+            let scene = SKScene(fileNamed: "GameScene") else {
                 fatalError("could not load scene")
         }
 

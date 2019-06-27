@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2311729922C162B000C7053B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2311729822C162B000C7053B /* AppDelegate.swift */; };
-		2311729B22C162B000C7053B /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 2311729A22C162B000C7053B /* GameScene.sks */; };
+		2311729B22C162B000C7053B /* OldGameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 2311729A22C162B000C7053B /* OldGameScene.sks */; };
 		2311729F22C162B000C7053B /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2311729E22C162B000C7053B /* GameScene.swift */; };
 		231172A122C162B000C7053B /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 231172A022C162B000C7053B /* GameViewController.swift */; };
 		231172A422C162B000C7053B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 231172A222C162B000C7053B /* Main.storyboard */; };
@@ -22,9 +22,9 @@
 		231172D722C26C8C00C7053B /* PhysicsCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 231172D622C26C8C00C7053B /* PhysicsCategory.swift */; };
 		231172D922C41D2E00C7053B /* TileProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 231172D822C41D2E00C7053B /* TileProperties.swift */; };
 		231172DC22C4592B00C7053B /* MapWriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 231172DB22C4592B00C7053B /* MapWriter.swift */; };
-		231172DE22C465BF00C7053B /* EmptyGameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 231172DD22C465BF00C7053B /* EmptyGameScene.sks */; };
 		231172E022C4F1AC00C7053B /* MapCoordinates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 231172DF22C4F1AC00C7053B /* MapCoordinates.swift */; };
 		231172E222C4F47000C7053B /* PhysicsCategory+GyroMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 231172E122C4F47000C7053B /* PhysicsCategory+GyroMap.swift */; };
+		238C3DA322C50D7E0077CA2B /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 238C3DA222C50D7E0077CA2B /* GameScene.sks */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,7 +47,7 @@
 /* Begin PBXFileReference section */
 		2311729522C162B000C7053B /* GyroPad.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GyroPad.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2311729822C162B000C7053B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		2311729A22C162B000C7053B /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
+		2311729A22C162B000C7053B /* OldGameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = OldGameScene.sks; sourceTree = "<group>"; };
 		2311729E22C162B000C7053B /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
 		231172A022C162B000C7053B /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		231172A322C162B000C7053B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -66,9 +66,9 @@
 		231172D622C26C8C00C7053B /* PhysicsCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhysicsCategory.swift; sourceTree = "<group>"; };
 		231172D822C41D2E00C7053B /* TileProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TileProperties.swift; sourceTree = "<group>"; };
 		231172DB22C4592B00C7053B /* MapWriter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapWriter.swift; sourceTree = "<group>"; };
-		231172DD22C465BF00C7053B /* EmptyGameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = EmptyGameScene.sks; sourceTree = "<group>"; };
 		231172DF22C4F1AC00C7053B /* MapCoordinates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapCoordinates.swift; sourceTree = "<group>"; };
 		231172E122C4F47000C7053B /* PhysicsCategory+GyroMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PhysicsCategory+GyroMap.swift"; sourceTree = "<group>"; };
+		238C3DA222C50D7E0077CA2B /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,12 +119,10 @@
 		2311729722C162B000C7053B /* GyroPad */ = {
 			isa = PBXGroup;
 			children = (
+				238C3DA122C50D580077CA2B /* Scenes */,
 				231172DA22C4582E00C7053B /* Map */,
 				2311729822C162B000C7053B /* AppDelegate.swift */,
 				231172CC22C18B5D00C7053B /* CharacterNode.swift */,
-				2311729E22C162B000C7053B /* GameScene.swift */,
-				2311729A22C162B000C7053B /* GameScene.sks */,
-				231172DD22C465BF00C7053B /* EmptyGameScene.sks */,
 				231172A022C162B000C7053B /* GameViewController.swift */,
 				231172D622C26C8C00C7053B /* PhysicsCategory.swift */,
 				231172E122C4F47000C7053B /* PhysicsCategory+GyroMap.swift */,
@@ -164,6 +162,16 @@
 				231172DF22C4F1AC00C7053B /* MapCoordinates.swift */,
 			);
 			path = Map;
+			sourceTree = "<group>";
+		};
+		238C3DA122C50D580077CA2B /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				238C3DA222C50D7E0077CA2B /* GameScene.sks */,
+				2311729E22C162B000C7053B /* GameScene.swift */,
+				2311729A22C162B000C7053B /* OldGameScene.sks */,
+			);
+			path = Scenes;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -270,11 +278,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				238C3DA322C50D7E0077CA2B /* GameScene.sks in Resources */,
 				231172A422C162B000C7053B /* Main.storyboard in Resources */,
-				2311729B22C162B000C7053B /* GameScene.sks in Resources */,
+				2311729B22C162B000C7053B /* OldGameScene.sks in Resources */,
 				231172CF22C18C6400C7053B /* GyroTileSet.sks in Resources */,
 				231172A622C162B100C7053B /* Assets.xcassets in Resources */,
-				231172DE22C465BF00C7053B /* EmptyGameScene.sks in Resources */,
 				231172A922C162B100C7053B /* LaunchScreen.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
