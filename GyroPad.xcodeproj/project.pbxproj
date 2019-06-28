@@ -28,6 +28,7 @@
 		238C3DAF22C553660077CA2B /* LevelReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 238C3DAE22C553660077CA2B /* LevelReader.swift */; };
 		238C3DB122C66C3F0077CA2B /* TileProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 238C3DB022C66C3F0077CA2B /* TileProvider.swift */; };
 		238C3DB322C66C460077CA2B /* MapElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 238C3DB222C66C460077CA2B /* MapElement.swift */; };
+		238C3DB622C68C760077CA2B /* PipeNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 238C3DB522C68C760077CA2B /* PipeNode.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,6 +76,7 @@
 		238C3DAE22C553660077CA2B /* LevelReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelReader.swift; sourceTree = "<group>"; };
 		238C3DB022C66C3F0077CA2B /* TileProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TileProvider.swift; sourceTree = "<group>"; };
 		238C3DB222C66C460077CA2B /* MapElement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapElement.swift; sourceTree = "<group>"; };
+		238C3DB522C68C760077CA2B /* PipeNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PipeNode.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -125,10 +127,10 @@
 		2311729722C162B000C7053B /* GyroPad */ = {
 			isa = PBXGroup;
 			children = (
+				238C3DB422C68C630077CA2B /* Nodes */,
 				238C3DA122C50D580077CA2B /* Scenes */,
 				231172DA22C4582E00C7053B /* Map */,
 				2311729822C162B000C7053B /* AppDelegate.swift */,
-				231172CC22C18B5D00C7053B /* CharacterNode.swift */,
 				231172A022C162B000C7053B /* GameViewController.swift */,
 				231172D622C26C8C00C7053B /* PhysicsCategory.swift */,
 				231172E122C4F47000C7053B /* PhysicsCategory+GyroPad.swift */,
@@ -181,6 +183,15 @@
 				2311729A22C162B000C7053B /* OldGameScene.sks */,
 			);
 			path = Scenes;
+			sourceTree = "<group>";
+		};
+		238C3DB422C68C630077CA2B /* Nodes */ = {
+			isa = PBXGroup;
+			children = (
+				231172CC22C18B5D00C7053B /* CharacterNode.swift */,
+				238C3DB522C68C760077CA2B /* PipeNode.swift */,
+			);
+			path = Nodes;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -320,6 +331,7 @@
 				238C3DAB22C54FAC0077CA2B /* MapConfig.swift in Sources */,
 				2311729F22C162B000C7053B /* GameScene.swift in Sources */,
 				238C3DB322C66C460077CA2B /* MapElement.swift in Sources */,
+				238C3DB622C68C760077CA2B /* PipeNode.swift in Sources */,
 				231172CD22C18B5D00C7053B /* CharacterNode.swift in Sources */,
 				231172E022C4F1AC00C7053B /* MapCoordinates.swift in Sources */,
 				238C3DA722C54BEE0077CA2B /* LevelMap.swift in Sources */,

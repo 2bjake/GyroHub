@@ -35,23 +35,10 @@ class LevelMapBuilder {
                                     tileSize: tileSize,
                                     fillWith: TileProvider.tileGroupNamed(.empty))
 
-        // temporary hack, have to draw pipes only first, then everything else to make it render correctly
         for row in 0..<config.numberOfRows {
             for column in 0..<config.numberOfColumns {
                 let element = config.elementAt(column: column, row: row)
-                if element == .greenPipe {
-                    tileMapNode.setTileGroup(element.tileGroup, forColumn: column, row: row)
-                }
-            }
-        }
-        config.pipeLocations.forEach(makePipeNodes)
-
-        for row in 0..<config.numberOfRows {
-            for column in 0..<config.numberOfColumns {
-                let element = config.elementAt(column: column, row: row)
-                if element != .greenPipe {
-                    tileMapNode.setTileGroup(element.tileGroup, forColumn: column, row: row)
-                }
+                tileMapNode.setTileGroup(element.tileGroup, forColumn: column, row: row)
 
                 if element == .ground {
                     makeGroundNodeAt(column: column, row: row)
@@ -61,6 +48,14 @@ class LevelMapBuilder {
 
         let character = CharacterNode(size: tileSize)
         character.position = tileMapNode.centerOfTile(atCoordinates: config.characterLocation)
+
+        makePipes(config.pipeLocations).forEach {
+            tileMapNode.addChild($0)
+        }
+
+        tileMapNode.addChild(character)
+
+
 
         return LevelMap(config: config, tileMapNode: tileMapNode, character: character)
     }
@@ -84,47 +79,55 @@ class LevelMapBuilder {
         tileMapNode.addChild(tileNode)
     }
 
-    private func makePipeNodes(_ location: PipeLocation) {
-        makePipePart(.top, at: location.top)
-        var currentLocation = location.top.down
-
-        while currentLocation != location.bottom {
-            makePipePart(.center, at: currentLocation)
-            currentLocation = currentLocation.down
+    private func makePipes(_ locations: [PipeLocation]) -> [PipeNode] {
+        return locations.map {
+            let pipe = PipeNode.makePipe(size: tileSize, length: $0.top.row - $0.bottom.row + 1)
+            pipe.position = tileMapNode.centerOfTile(atCoordinates: $0.top)
+            return pipe
         }
-        makePipePart(.bottom, at: currentLocation)
     }
 
-    private func makePipePart(_ part: PipePart, at coordinates: MapCoordinates) {
-        let tileSize = tileMapNode.tileSize
-        let halfTileWidth = CGFloat(tileSize.width / 2)
-        let halfTileHeight = CGFloat(tileSize.height / 2)
-
-        let centerPoint = tileMapNode.centerOfTile(atCoordinates: coordinates)
-        let size: CGSize
-        let yPosition: CGFloat
-
-        switch part {
-        case .top:
-            size = CGSize(width: tileSize.width, height: tileSize.height * RenderPercentages.capHeight)
-            yPosition = centerPoint.y - halfTileHeight
-        case .center:
-            size = tileSize
-            yPosition = centerPoint.y - halfTileHeight
-        case .bottom:
-            size = CGSize(width: tileSize.width, height: tileSize.height * RenderPercentages.capHeight)
-            yPosition = centerPoint.y + halfTileHeight - size.height
-        }
-
-        let tileNode = SKShapeNode(rect: CGRect(x: 0, y: 0, width: size.width, height: size.height))
-        tileNode.position = CGPoint(x: centerPoint.x - halfTileWidth, y: yPosition)
-        tileNode.physicsBody = SKPhysicsBody(rectangleOf: size, center: CGPoint(x: size.width / 2, y: size.height / 2))
-
-        tileNode.physicsBody?.linearDamping = 0.6
-        tileNode.physicsBody?.restitution = 0.0
-        tileNode.physicsBody?.isDynamic = false
-        tileNode.physicsBody?.categoryBitMask = BitMask(.pipe)
-        tileNode.physicsBody?.contactTestBitMask = BitMask(.character | .ground)
-        tileMapNode.addChild(tileNode)
-    }
+//    private func makePipeNodes(_ location: PipeLocation) {
+//        makePipePart(.top, at: location.top)
+//        var currentLocation = location.top.down
+//
+//        while currentLocation != location.bottom {
+//            makePipePart(.center, at: currentLocation)
+//            currentLocation = currentLocation.down
+//        }
+//        makePipePart(.bottom, at: currentLocation)
+//    }
+//
+//    private func makePipePart(_ part: PipePart, at coordinates: MapCoordinates) {
+//        let tileSize = tileMapNode.tileSize
+//        let halfTileWidth = CGFloat(tileSize.width / 2)
+//        let halfTileHeight = CGFloat(tileSize.height / 2)
+//
+//        let centerPoint = tileMapNode.centerOfTile(atCoordinates: coordinates)
+//        let size: CGSize
+//        let yPosition: CGFloat
+//
+//        switch part {
+//        case .top:
+//            size = CGSize(width: tileSize.width, height: tileSize.height * RenderPercentages.capHeight)
+//            yPosition = centerPoint.y - halfTileHeight
+//        case .center:
+//            size = tileSize
+//            yPosition = centerPoint.y - halfTileHeight
+//        case .bottom:
+//            size = CGSize(width: tileSize.width, height: tileSize.height * RenderPercentages.capHeight)
+//            yPosition = centerPoint.y + halfTileHeight - size.height
+//        }
+//
+//        let tileNode = SKShapeNode(rect: CGRect(x: 0, y: 0, width: size.width, height: size.height))
+//        tileNode.position = CGPoint(x: centerPoint.x - halfTileWidth, y: yPosition)
+//        tileNode.physicsBody = SKPhysicsBody(rectangleOf: size, center: CGPoint(x: size.width / 2, y: size.height / 2))
+//
+//        tileNode.physicsBody?.linearDamping = 0.6
+//        tileNode.physicsBody?.restitution = 0.0
+//        tileNode.physicsBody?.isDynamic = false
+//        tileNode.physicsBody?.categoryBitMask = BitMask(.pipe)
+//        tileNode.physicsBody?.contactTestBitMask = BitMask(.character | .ground)
+//        tileMapNode.addChild(tileNode)
+//    }
 }

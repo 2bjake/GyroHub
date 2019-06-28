@@ -21,9 +21,9 @@ enum MapElement: Character {
             return TileProvider.tileGroupNamed(.rope)
         case .ground:
             return TileProvider.tileGroupNamed(.ground)
-        case .greenPipe:
-            return TileProvider.tileGroupNamed(.pipe)
-        case .empty, .character:
+//        case .greenPipe:
+//            return TileProvider.tileGroupNamed(.pipe)
+        case .empty, .character, .greenPipe:
             return TileProvider.tileGroupNamed(.empty)
         }
     }

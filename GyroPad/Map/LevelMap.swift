@@ -77,7 +77,7 @@ class LevelMap: SKNode {
         super.init()
 
         addChild(tileMapNode)
-        addChild(character)
+//        addChild(character)
     }
 
     required init?(coder aDecoder: NSCoder) {
