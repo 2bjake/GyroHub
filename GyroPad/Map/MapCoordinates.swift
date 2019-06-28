@@ -37,3 +37,13 @@ extension MapCoordinates {
     var right: MapCoordinates { return .init(column: column + 1, row: row) }
 }
 
+extension SKTileMapNode {
+    func tileDefinition(atCoordinates coordinates: MapCoordinates) -> SKTileDefinition? {
+        return tileDefinition(atColumn: coordinates.column, row: coordinates.row)
+    }
+
+    func centerOfTile(atCoordinates coordinates: MapCoordinates) -> CGPoint {
+        return centerOfTile(atColumn: coordinates.column, row: coordinates.row)
+    }
+}
+

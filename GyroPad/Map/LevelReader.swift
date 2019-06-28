@@ -42,18 +42,24 @@ class LevelReader {
             }
         }
 
-        let pipeLocations = findPipeLocationsIn(elements, numberOfColumns: lines[0].count, numberOfRows: lines.count)
+        let numberOfColumns = lines[0].count
+        let numberOfRows = lines.count
+        let pipeLocations = findPipeLocationsIn(elements, numberOfColumns: numberOfColumns, numberOfRows: numberOfRows)
 
         if let characterCoords = characterCoords {
-            return MapConfig(elements: elements, characterLocation: characterCoords, pipeLocations: pipeLocations)
+            return MapConfig(numberOfColumns: numberOfColumns,
+                             numberOfRows: numberOfRows,
+                             elements: elements,
+                             characterLocation: characterCoords,
+                             pipeLocations: pipeLocations)
         } else {
             fatalError("no character position defined in the level data") //TODO: handle this gracefully
         }
     }
 
-    private func findPipeLocationsIn(_ elements: [MapCoordinates: MapElement], numberOfColumns: Int, numberOfRows: Int) -> [(top: MapCoordinates, bottom: MapCoordinates)] {
+    private func findPipeLocationsIn(_ elements: [MapCoordinates: MapElement], numberOfColumns: Int, numberOfRows: Int) -> [PipeLocation] {
         //iterate through elements by column (top to bottom) to find pipes
-        var pipeLocations = [(top: MapCoordinates, bottom: MapCoordinates)]()
+        var pipeLocations = [PipeLocation]()
 
         var currentPipeBottomCoords: MapCoordinates?
         for column in 0..<numberOfColumns {

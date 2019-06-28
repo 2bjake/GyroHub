@@ -30,8 +30,7 @@ class GameScene: SKScene {
     private var lastUpdateTime = TimeInterval(0)
 
     private let levelReader = LevelReader()
-    private var characterNode = CharacterNode(size: .init(width: 50, height: 50))
-    private var map: GameMap!
+    private var levelMap: LevelMap! // always set in sceneDidLoad()
 
     // for tracking movement touches
     private var touchStartPosition: CGPoint?
@@ -43,20 +42,12 @@ class GameScene: SKScene {
 
     override func sceneDidLoad() {
         physicsWorld.contactDelegate = self
-
-        guard let tileSet = SKTileSet(named: "GyroTileSet") else {
-            fatalError("could not load tileSet")
-        }
-        tileSet.defaultTileGroup = tileSet.tileGroupNamed(.empty)
-
-        let mapConfig = levelReader.mapConfigFor("simple")
-        map = MapBuilder().buildMap(tileSet: tileSet)
-        addChild(map.tileMapNode)
+        let mapConfig = levelReader.mapConfigFor("simple") //TODO
+        levelMap = LevelMapBuilder(config: mapConfig).buildMap()
     }
 
     override func didMove(to view: SKView) {
-        characterNode.position = map.pointFor(coordinates: map.initialCharacterCoords)
-        addChild(characterNode)
+        addChild(levelMap)
     }
 
     override func update(_ currentTime: TimeInterval) {
@@ -66,15 +57,13 @@ class GameScene: SKScene {
 
         let dt = currentTime - lastUpdateTime
 
-        characterNode.update(deltaTime: dt,
-                             touchDirection: currentTouchDirection,
-                             isAtRope: map.isRopeAtPoint(characterNode.position))
+        levelMap.update(deltaTime: dt, touchDirection: currentTouchDirection)
     }
 
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         guard let touch = touches.first else { return }
         touchStartPosition = touch.location(in: self)
-        map.touchBegan(touch)
+        levelMap.touchBegan(touch)
     }
 
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -95,6 +84,6 @@ class GameScene: SKScene {
 
 extension GameScene: SKPhysicsContactDelegate {
     func didBegin(_ contact: SKPhysicsContact) {
-        print("contact between \(contact.bodyA.category) and \(contact.bodyB.category)")
+        //print("contact between \(contact.bodyA.category) and \(contact.bodyB.category)")
     }
 }
