@@ -11,14 +11,6 @@ import SpriteKit
 //constants
 private let isGroundKey = "isGround"
 private let isClimbableKey = "isClimbable"
-private let pipePartKey = "pipePart"
-
-
-enum PipePart: Int {
-    case bottom = 0
-    case center = 1
-    case top = 2
-}
 
 extension SKTileDefinition {
     func boolForKey(_ key: String) -> Bool {
@@ -33,25 +25,15 @@ extension SKTileDefinition {
 private struct TileProperties {
     let isGround: Bool
     let isClimbable: Bool
-    let pipePart: PipePart?
-    var isPipe: Bool { return pipePart != nil }
 }
 
 extension TileProperties {
     init(_ definition: SKTileDefinition?) {
         guard let definition = definition else {
-            self.init(isGround: false, isClimbable: false, pipePart: nil)
+            self.init(isGround: false, isClimbable: false)
             return
         }
-
-        var pipePart: PipePart?
-        if let partValue = definition.intForKey(pipePartKey) {
-            pipePart = PipePart(rawValue: partValue)
-        }
-
-        self.init(isGround: definition.boolForKey(isGroundKey),
-                  isClimbable: definition.boolForKey(isClimbableKey),
-                  pipePart: pipePart)
+        self.init(isGround: definition.boolForKey(isGroundKey), isClimbable: definition.boolForKey(isClimbableKey))
     }
 }
 
@@ -77,7 +59,6 @@ class LevelMap: SKNode {
         super.init()
 
         addChild(tileMapNode)
-//        addChild(character)
     }
 
     required init?(coder aDecoder: NSCoder) {
