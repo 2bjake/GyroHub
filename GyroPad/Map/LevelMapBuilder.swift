@@ -11,16 +11,6 @@ import SpriteKit
 class LevelMapBuilder {
 
     private let tileSize = CGSize(width: 50, height: 50)
-
-    private enum RenderPercentages {
-//      static let groundHeight = CGFloat(0.125)
-        static let pipeWidth = CGFloat(0.7)
-        static let capHeight = CGFloat(0.25)
-        static let capWidth = CGFloat(0.9)
-//      static let anchorHeight = CGFloat(0.25)
-//      static let anchorWidth = CGFloat(0.12)
-    }
-
     let config: MapConfig
     var tileMapNode: SKTileMapNode!
 
@@ -86,48 +76,4 @@ class LevelMapBuilder {
             return pipe
         }
     }
-
-//    private func makePipeNodes(_ location: PipeLocation) {
-//        makePipePart(.top, at: location.top)
-//        var currentLocation = location.top.down
-//
-//        while currentLocation != location.bottom {
-//            makePipePart(.center, at: currentLocation)
-//            currentLocation = currentLocation.down
-//        }
-//        makePipePart(.bottom, at: currentLocation)
-//    }
-//
-//    private func makePipePart(_ part: PipePart, at coordinates: MapCoordinates) {
-//        let tileSize = tileMapNode.tileSize
-//        let halfTileWidth = CGFloat(tileSize.width / 2)
-//        let halfTileHeight = CGFloat(tileSize.height / 2)
-//
-//        let centerPoint = tileMapNode.centerOfTile(atCoordinates: coordinates)
-//        let size: CGSize
-//        let yPosition: CGFloat
-//
-//        switch part {
-//        case .top:
-//            size = CGSize(width: tileSize.width, height: tileSize.height * RenderPercentages.capHeight)
-//            yPosition = centerPoint.y - halfTileHeight
-//        case .center:
-//            size = tileSize
-//            yPosition = centerPoint.y - halfTileHeight
-//        case .bottom:
-//            size = CGSize(width: tileSize.width, height: tileSize.height * RenderPercentages.capHeight)
-//            yPosition = centerPoint.y + halfTileHeight - size.height
-//        }
-//
-//        let tileNode = SKShapeNode(rect: CGRect(x: 0, y: 0, width: size.width, height: size.height))
-//        tileNode.position = CGPoint(x: centerPoint.x - halfTileWidth, y: yPosition)
-//        tileNode.physicsBody = SKPhysicsBody(rectangleOf: size, center: CGPoint(x: size.width / 2, y: size.height / 2))
-//
-//        tileNode.physicsBody?.linearDamping = 0.6
-//        tileNode.physicsBody?.restitution = 0.0
-//        tileNode.physicsBody?.isDynamic = false
-//        tileNode.physicsBody?.categoryBitMask = BitMask(.pipe)
-//        tileNode.physicsBody?.contactTestBitMask = BitMask(.character | .ground)
-//        tileMapNode.addChild(tileNode)
-//    }
 }
