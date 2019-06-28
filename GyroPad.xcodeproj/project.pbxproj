@@ -25,6 +25,10 @@
 		231172E022C4F1AC00C7053B /* MapCoordinates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 231172DF22C4F1AC00C7053B /* MapCoordinates.swift */; };
 		231172E222C4F47000C7053B /* PhysicsCategory+GyroPad.swift in Sources */ = {isa = PBXBuildFile; fileRef = 231172E122C4F47000C7053B /* PhysicsCategory+GyroPad.swift */; };
 		238C3DA322C50D7E0077CA2B /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 238C3DA222C50D7E0077CA2B /* GameScene.sks */; };
+		238C3DA722C54BEE0077CA2B /* LevelMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 238C3DA622C54BEE0077CA2B /* LevelMap.swift */; };
+		238C3DA922C54DB60077CA2B /* LevelMapBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 238C3DA822C54DB60077CA2B /* LevelMapBuilder.swift */; };
+		238C3DAB22C54FAC0077CA2B /* MapConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 238C3DAA22C54FAC0077CA2B /* MapConfig.swift */; };
+		238C3DAF22C553660077CA2B /* LevelReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 238C3DAE22C553660077CA2B /* LevelReader.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,6 +73,10 @@
 		231172DF22C4F1AC00C7053B /* MapCoordinates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapCoordinates.swift; sourceTree = "<group>"; };
 		231172E122C4F47000C7053B /* PhysicsCategory+GyroPad.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PhysicsCategory+GyroPad.swift"; sourceTree = "<group>"; };
 		238C3DA222C50D7E0077CA2B /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
+		238C3DA622C54BEE0077CA2B /* LevelMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelMap.swift; sourceTree = "<group>"; };
+		238C3DA822C54DB60077CA2B /* LevelMapBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelMapBuilder.swift; sourceTree = "<group>"; };
+		238C3DAA22C54FAC0077CA2B /* MapConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapConfig.swift; sourceTree = "<group>"; };
+		238C3DAE22C553660077CA2B /* LevelReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelReader.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -156,9 +164,9 @@
 		231172DA22C4582E00C7053B /* Map */ = {
 			isa = PBXGroup;
 			children = (
+				238C3DAD22C553460077CA2B /* New */,
+				238C3DAC22C553260077CA2B /* Original */,
 				231172D822C41D2E00C7053B /* TileProperties.swift */,
-				231172D422C2608100C7053B /* GameMap.swift */,
-				231172DB22C4592B00C7053B /* MapBuilder.swift */,
 				231172DF22C4F1AC00C7053B /* MapCoordinates.swift */,
 			);
 			path = Map;
@@ -172,6 +180,26 @@
 				2311729A22C162B000C7053B /* OldGameScene.sks */,
 			);
 			path = Scenes;
+			sourceTree = "<group>";
+		};
+		238C3DAC22C553260077CA2B /* Original */ = {
+			isa = PBXGroup;
+			children = (
+				231172DB22C4592B00C7053B /* MapBuilder.swift */,
+				231172D422C2608100C7053B /* GameMap.swift */,
+			);
+			path = Original;
+			sourceTree = "<group>";
+		};
+		238C3DAD22C553460077CA2B /* New */ = {
+			isa = PBXGroup;
+			children = (
+				238C3DA622C54BEE0077CA2B /* LevelMap.swift */,
+				238C3DA822C54DB60077CA2B /* LevelMapBuilder.swift */,
+				238C3DAA22C54FAC0077CA2B /* MapConfig.swift */,
+				238C3DAE22C553660077CA2B /* LevelReader.swift */,
+			);
+			path = New;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -308,15 +336,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				238C3DAB22C54FAC0077CA2B /* MapConfig.swift in Sources */,
 				231172D522C2608100C7053B /* GameMap.swift in Sources */,
 				2311729F22C162B000C7053B /* GameScene.swift in Sources */,
 				231172CD22C18B5D00C7053B /* CharacterNode.swift in Sources */,
 				231172E022C4F1AC00C7053B /* MapCoordinates.swift in Sources */,
+				238C3DA722C54BEE0077CA2B /* LevelMap.swift in Sources */,
 				231172D722C26C8C00C7053B /* PhysicsCategory.swift in Sources */,
+				238C3DAF22C553660077CA2B /* LevelReader.swift in Sources */,
 				231172D922C41D2E00C7053B /* TileProperties.swift in Sources */,
 				231172DC22C4592B00C7053B /* MapBuilder.swift in Sources */,
 				231172A122C162B000C7053B /* GameViewController.swift in Sources */,
 				2311729922C162B000C7053B /* AppDelegate.swift in Sources */,
+				238C3DA922C54DB60077CA2B /* LevelMapBuilder.swift in Sources */,
 				231172E222C4F47000C7053B /* PhysicsCategory+GyroPad.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

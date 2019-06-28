@@ -68,7 +68,7 @@ class MapBuilder {
 
                 if let tileGroup = MapElement(rawValue: char)?.tileGroup, tileGroup.name == TileGroupName.pipe.rawValue {
                     tileMapNode.setTileGroup(tileGroup, forColumn: column, row: row)
-                    print("(row: \(row), column: \(column)) = \(tileGroup.name ?? "none")")
+                    //print("(row: \(row), column: \(column)) = \(tileGroup.name ?? "none")")
                 }
 
             }
@@ -82,7 +82,7 @@ class MapBuilder {
 
                 if let tileGroup = MapElement(rawValue: char)?.tileGroup, tileGroup.name != TileGroupName.pipe.rawValue {
                     tileMapNode.setTileGroup(tileGroup, forColumn: column, row: row)
-                    print("(row: \(row), column: \(column)) = \(tileGroup.name ?? "none")")
+                    //print("(row: \(row), column: \(column)) = \(tileGroup.name ?? "none")")
                 }
             }
         }

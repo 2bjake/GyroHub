@@ -29,6 +29,7 @@ enum TouchDirection {
 class GameScene: SKScene {
     private var lastUpdateTime = TimeInterval(0)
 
+    private let levelReader = LevelReader()
     private var characterNode = CharacterNode(size: .init(width: 50, height: 50))
     private var map: GameMap!
 
@@ -48,6 +49,7 @@ class GameScene: SKScene {
         }
         tileSet.defaultTileGroup = tileSet.tileGroupNamed(.empty)
 
+        let mapConfig = levelReader.mapConfigFor("simple")
         map = MapBuilder().buildMap(tileSet: tileSet)
         addChild(map.tileMapNode)
     }

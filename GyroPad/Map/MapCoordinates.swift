@@ -8,7 +8,7 @@
 
 import SpriteKit
 
-struct MapCoordinates {
+struct MapCoordinates: Hashable, Equatable {
     var column: Int { didSet { column = max(0, column) }}
     var row: Int { didSet { row = max(row, 0) }}
 }
