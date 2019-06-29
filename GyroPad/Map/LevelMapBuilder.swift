@@ -30,7 +30,7 @@ class LevelMapBuilder {
                 let element = config.elementAt(column: column, row: row)
                 tileMapNode.setTileGroup(element.tileGroup, forColumn: column, row: row)
 
-                if element == .ground {
+                if case .ground = element {
                     makeGroundNodeAt(column: column, row: row)
                 }
             }

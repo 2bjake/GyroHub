@@ -8,12 +8,36 @@
 
 import SpriteKit
 
-enum MapElement: Character {
-    case empty = "."
-    case rope = "|"
-    case ground = "Z"
-    case greenPipe = "G"
-    case character = "O"
+enum MapElement {
+    case empty
+    case rope
+    case ground
+    case pipe(UIColor)
+    case character
+
+    init(_ char: Character) {
+        switch char {
+        case ".":
+            self = .empty
+        case "|":
+            self = .rope
+        case "Z":
+            self = .ground
+        case "B":
+            self = .pipe(.blue)
+        case "O":
+            self = .character
+        default:
+            self = .empty
+        }
+    }
+
+    var isPipe: Bool {
+        if case .pipe = self {
+            return true
+        }
+        return false
+    }
 
     var tileGroup: SKTileGroup {
         switch self {
@@ -21,9 +45,7 @@ enum MapElement: Character {
             return TileProvider.tileGroupNamed(.rope)
         case .ground:
             return TileProvider.tileGroupNamed(.ground)
-//        case .greenPipe:
-//            return TileProvider.tileGroupNamed(.pipe)
-        case .empty, .character, .greenPipe:
+        case .empty, .character, .pipe:
             return TileProvider.tileGroupNamed(.empty)
         }
     }

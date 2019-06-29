@@ -25,24 +25,31 @@ extension PipeNode {
     static private let bottomTexture = SKTexture(imageNamed: "Pipe_Bottom")
     static private let singleTexture = SKTexture(imageNamed: "Pipe_Single")
 
+    static func makeColorizedNode(texture: SKTexture, color: UIColor, size: CGSize) -> SKSpriteNode {
+        let node = SKSpriteNode(texture: texture, color: color, size: size)
+        node.colorBlendFactor = 1
+        return node
+    }
+
     static func makePipe(size: CGSize, length: Int) -> PipeNode {
         let pipeNode = PipeNode()
+        let color = UIColor.blue
 
         if length <= 1 {
-            pipeNode.addChild(SKSpriteNode(texture: singleTexture, size: size))
+            pipeNode.addChild(makeColorizedNode(texture: singleTexture, color: color, size: size))
         } else {
-            let topNode = SKSpriteNode(texture: topTexture, size: size)
+            let topNode = makeColorizedNode(texture: topTexture, color: color, size: size)
             pipeNode.addChild(topNode)
             var nextPosition = CGPoint(x: 0, y: -size.height)
 
             for _ in 0..<(length-2) {
-                let node = SKSpriteNode(texture: centerTexture, size: size)
+                let node = makeColorizedNode(texture: centerTexture, color: color, size: size)
                 node.position = nextPosition
                 pipeNode.addChild(node)
                 nextPosition = CGPoint(x: 0, y: nextPosition.y - size.height)
             }
 
-            let bottomNode = SKSpriteNode(texture: bottomTexture, size: size)
+            let bottomNode = makeColorizedNode(texture: bottomTexture, color: color, size: size)
             bottomNode.position = nextPosition
             pipeNode.addChild(bottomNode)
         }

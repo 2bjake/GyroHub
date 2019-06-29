@@ -29,11 +29,8 @@ class LevelReader {
                 let column = charIndex
                 let coords = MapCoordinates(column: column, row: row)
 
-                guard let mapElement = MapElement(rawValue: char) else {
-                    fatalError("no map element found for value \(char)") //TODO: handle this gracefully
-                }
-
-                if mapElement == .character {
+                let mapElement = MapElement(char)
+                if case .character = mapElement {
                     characterCoords = coords
                     elements[coords] = .empty
                 } else {
@@ -67,11 +64,11 @@ class LevelReader {
                 let currentCoords = MapCoordinates(column: column, row: row)
                 let currentElement = elements[currentCoords]! // if we're missing a coord at this point, we've already screwed up pretty badly
 
-                if let bottomCoord = currentPipeBottomCoords, currentElement != .greenPipe {
+                if let bottomCoord = currentPipeBottomCoords, !currentElement.isPipe {
                     // left the top of the pipe, save coordinate
                     pipeLocations.append((top: currentCoords.down, bottom: bottomCoord))
                     currentPipeBottomCoords = nil
-                } else if currentPipeBottomCoords == nil && currentElement == .greenPipe {
+                } else if currentPipeBottomCoords == nil && currentElement.isPipe {
                     // found a new bottom pipe, set currentPipeBottomCoords
                     currentPipeBottomCoords = currentCoords
                 }
