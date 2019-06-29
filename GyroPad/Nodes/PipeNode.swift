@@ -53,10 +53,26 @@ extension PipeNode {
             pipeNode.addChild(bottomNode)
         }
 
-        let physicsRect = CGSize(width: size.width, height: size.height * CGFloat(length))
-        let physicsCenter = CGPoint(x: 0, y: -size.height * CGFloat(length - 1) / 2)
-        pipeNode.physicsBody = SKPhysicsBody(rectangleOf: physicsRect, center: physicsCenter)
-        pipeNode.physicsBody?.isDynamic = false
+        //TODO: rather than draw these, can they be built with SKPhysicsBody(texture: size:) and
+        // then positioned as done below?
+
+        // pipe
+        let pipePhysicsRect = CGSize(width: size.width * 0.7, height: size.height * CGFloat(length))
+        let pipePhysicsCenter = CGPoint(x: 0, y: -size.height * CGFloat(length - 1) / 2)
+        let pipePhysicsBody = SKPhysicsBody(rectangleOf: pipePhysicsRect, center: pipePhysicsCenter)
+
+        // top cap
+        let topPhysicsRect = CGSize(width: size.width * 0.9, height: size.height * 0.25)
+        let topPhysicsCenter = CGPoint(x: 0, y: 18.75)
+        let topPhysicsBody = SKPhysicsBody(rectangleOf: topPhysicsRect, center: topPhysicsCenter)
+
+        // bottom cap
+        let bottomPhysicsRect = CGSize(width: size.width * 0.9, height: size.height * 0.25)
+        let bottomPhysicsCenter = CGPoint(x: 0, y: (-size.height * CGFloat(length - 1)) - 18.75)
+        let bottomPhysicsBody = SKPhysicsBody(rectangleOf: bottomPhysicsRect, center: bottomPhysicsCenter)
+
+        pipeNode.physicsBody = SKPhysicsBody(bodies: [pipePhysicsBody, topPhysicsBody, bottomPhysicsBody])
+        pipeNode.physicsBody?.allowsRotation = false
 
         return pipeNode
     }

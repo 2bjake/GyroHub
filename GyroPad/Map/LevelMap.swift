@@ -42,6 +42,7 @@ class LevelMap: SKNode {
     private let config: MapConfig
     private let tileMapNode: SKTileMapNode
     private let character: CharacterNode
+    private let pipes: [PipeNode]
 
     private var characterCoords: MapCoordinates {
         return coordinatesForPoint(character.position)
@@ -52,10 +53,11 @@ class LevelMap: SKNode {
         return properties.isClimbable
     }
 
-    init(config: MapConfig, tileMapNode: SKTileMapNode, character: CharacterNode) {
+    init(config: MapConfig, tileMapNode: SKTileMapNode, character: CharacterNode, pipes: [PipeNode]) {
         self.config = config
         self.tileMapNode = tileMapNode
         self.character = character
+        self.pipes = pipes
         super.init()
 
         addChild(tileMapNode)

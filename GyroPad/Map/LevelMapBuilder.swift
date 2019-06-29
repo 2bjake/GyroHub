@@ -39,15 +39,18 @@ class LevelMapBuilder {
         let character = CharacterNode(size: tileSize)
         character.position = tileMapNode.centerOfTile(atCoordinates: config.characterLocation)
 
-        makePipes(config.pipeConfigs).forEach {
-            tileMapNode.addChild($0)
+        let pipes = config.pipeConfigs.map(makePipe)
+        pipes.forEach(tileMapNode.addChild)
+
+        config.pipeConfigs.forEach {
+            let (leftAnchor, rightAnchor) = makeAnchorsForPipe($0)
+            tileMapNode.addChild(leftAnchor)
+            tileMapNode.addChild(rightAnchor)
         }
 
         tileMapNode.addChild(character)
 
-
-
-        return LevelMap(config: config, tileMapNode: tileMapNode, character: character)
+        return LevelMap(config: config, tileMapNode: tileMapNode, character: character, pipes: pipes)
     }
 
     private func makeGroundNodeAt(column: Int, row: Int) {
@@ -69,12 +72,31 @@ class LevelMapBuilder {
         tileMapNode.addChild(tileNode)
     }
 
-    private func makePipes(_ locations: [PipeConfig]) -> [PipeNode] {
-        return locations.map {
-            let length = $0.top.row - $0.bottom.row + 1
-            let pipe = PipeNode.makePipe(length: length, color: $0.color, size: tileSize)
-            pipe.position = tileMapNode.centerOfTile(atCoordinates: $0.top)
-            return pipe
-        }
+    private func makePipe(_ config: PipeConfig) -> PipeNode {
+        let length = config.top.row - config.bottom.row + 1
+        let pipe = PipeNode.makePipe(length: length, color: config.color, size: tileSize)
+        pipe.position = tileMapNode.centerOfTile(atCoordinates: config.top)
+        return pipe
+    }
+
+    private func makeAnchorsForPipe(_ config: PipeConfig) -> (left: SKShapeNode, right: SKShapeNode) {
+        let centerPoint = tileMapNode.centerOfTile(atCoordinates: config.bottom)
+
+        let anchorWidth = tileSize.width * 0.15
+        let anchorSize = CGSize(width: anchorWidth, height: tileSize.height * 0.5)
+
+        let left = SKShapeNode(rectOf: anchorSize)
+        left.fillColor = .gray
+        left.position = CGPoint(x: centerPoint.x - tileSize.width / 2 + anchorWidth / 2, y: centerPoint.y)
+        left.physicsBody = SKPhysicsBody(rectangleOf: anchorSize)
+        left.physicsBody?.isDynamic = false
+
+        let right = SKShapeNode(rectOf: anchorSize)
+        right.fillColor = .gray
+        right.position = CGPoint(x: centerPoint.x + tileSize.width / 2 - anchorWidth / 2, y: centerPoint.y)
+        right.physicsBody = SKPhysicsBody(rectangleOf: anchorSize)
+        right.physicsBody?.isDynamic = false
+
+        return (left, right)
     }
 }
