@@ -8,14 +8,14 @@
 
 import SpriteKit
 
-typealias PipeLocation = (top: MapCoordinates, bottom: MapCoordinates)
+typealias PipeConfig = (top: MapCoordinates, bottom: MapCoordinates, color: UIColor)
 
 struct MapConfig {
     let numberOfColumns: Int
     let numberOfRows: Int
     let elements: [MapCoordinates: MapElement]
     let characterLocation: MapCoordinates
-    let pipeLocations: [PipeLocation]
+    let pipeConfigs: [PipeConfig]
 }
 
 extension MapConfig {

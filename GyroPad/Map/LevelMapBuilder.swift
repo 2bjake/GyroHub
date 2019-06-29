@@ -39,7 +39,7 @@ class LevelMapBuilder {
         let character = CharacterNode(size: tileSize)
         character.position = tileMapNode.centerOfTile(atCoordinates: config.characterLocation)
 
-        makePipes(config.pipeLocations).forEach {
+        makePipes(config.pipeConfigs).forEach {
             tileMapNode.addChild($0)
         }
 
@@ -69,9 +69,10 @@ class LevelMapBuilder {
         tileMapNode.addChild(tileNode)
     }
 
-    private func makePipes(_ locations: [PipeLocation]) -> [PipeNode] {
+    private func makePipes(_ locations: [PipeConfig]) -> [PipeNode] {
         return locations.map {
-            let pipe = PipeNode.makePipe(size: tileSize, length: $0.top.row - $0.bottom.row + 1)
+            let length = $0.top.row - $0.bottom.row + 1
+            let pipe = PipeNode.makePipe(length: length, color: $0.color, size: tileSize)
             pipe.position = tileMapNode.centerOfTile(atCoordinates: $0.top)
             return pipe
         }

@@ -41,39 +41,50 @@ class LevelReader {
 
         let numberOfColumns = lines[0].count
         let numberOfRows = lines.count
-        let pipeLocations = findPipeLocationsIn(elements, numberOfColumns: numberOfColumns, numberOfRows: numberOfRows)
+        let pipeConfigs = findPipesIn(elements, numberOfColumns: numberOfColumns, numberOfRows: numberOfRows)
 
         if let characterCoords = characterCoords {
             return MapConfig(numberOfColumns: numberOfColumns,
                              numberOfRows: numberOfRows,
                              elements: elements,
                              characterLocation: characterCoords,
-                             pipeLocations: pipeLocations)
+                             pipeConfigs: pipeConfigs)
         } else {
             fatalError("no character position defined in the level data") //TODO: handle this gracefully
         }
     }
 
-    private func findPipeLocationsIn(_ elements: [MapCoordinates: MapElement], numberOfColumns: Int, numberOfRows: Int) -> [PipeLocation] {
-        //iterate through elements by column (top to bottom) to find pipes
-        var pipeLocations = [PipeLocation]()
+    private func findPipesIn(_ elements: [MapCoordinates: MapElement], numberOfColumns: Int, numberOfRows: Int) -> [PipeConfig] {
+        //iterate through elements by column (bottom to top) to find pipes
+        var pipeConfigs = [PipeConfig]()
 
-        var currentPipeBottomCoords: MapCoordinates?
+        var currentPipe: (bottomCoords: MapCoordinates, color: UIColor)?
+
         for column in 0..<numberOfColumns {
+            currentPipe = nil
             for row in 0..<numberOfRows {
                 let currentCoords = MapCoordinates(column: column, row: row)
                 let currentElement = elements[currentCoords]! // if we're missing a coord at this point, we've already screwed up pretty badly
 
-                if let bottomCoord = currentPipeBottomCoords, !currentElement.isPipe {
+                if let pipe = currentPipe, currentElement.pipeColor != pipe.color {
                     // left the top of the pipe, save coordinate
-                    pipeLocations.append((top: currentCoords.down, bottom: bottomCoord))
-                    currentPipeBottomCoords = nil
-                } else if currentPipeBottomCoords == nil && currentElement.isPipe {
-                    // found a new bottom pipe, set currentPipeBottomCoords
-                    currentPipeBottomCoords = currentCoords
+                    pipeConfigs.append((top: currentCoords.down, bottom: pipe.bottomCoords, color: pipe.color))
+                    if let newColor = currentElement.pipeColor {
+                        currentPipe = (currentCoords, newColor)
+                    } else {
+                        currentPipe = nil
+                    }
+                } else if case let .pipe(color) = currentElement, currentPipe == nil {
+                    // found a new bottom pipe, set currentPipe
+                    currentPipe = (currentCoords, color)
                 }
             }
+
+            // about to loop around to the next column, record the current pipe (if there is one)
+            if let pipe = currentPipe {
+                pipeConfigs.append((top: MapCoordinates(column: column, row: numberOfRows - 1), bottom: pipe.bottomCoords, color: pipe.color))
+            }
         }
-        return pipeLocations
+        return pipeConfigs
     }
 }

@@ -25,6 +25,8 @@ enum MapElement {
             self = .ground
         case "B":
             self = .pipe(.blue)
+        case "R":
+            self = .pipe(.red)
         case "O":
             self = .character
         default:
@@ -37,6 +39,13 @@ enum MapElement {
             return true
         }
         return false
+    }
+
+    var pipeColor: UIColor? {
+        if case .pipe(let color) = self {
+            return color
+        }
+        return nil
     }
 
     var tileGroup: SKTileGroup {

@@ -27,13 +27,12 @@ extension PipeNode {
 
     static func makeColorizedNode(texture: SKTexture, color: UIColor, size: CGSize) -> SKSpriteNode {
         let node = SKSpriteNode(texture: texture, color: color, size: size)
-        node.colorBlendFactor = 1
+        node.colorBlendFactor = 0.75
         return node
     }
 
-    static func makePipe(size: CGSize, length: Int) -> PipeNode {
+    static func makePipe(length: Int, color: UIColor, size: CGSize) -> PipeNode {
         let pipeNode = PipeNode()
-        let color = UIColor.blue
 
         if length <= 1 {
             pipeNode.addChild(makeColorizedNode(texture: singleTexture, color: color, size: size))
