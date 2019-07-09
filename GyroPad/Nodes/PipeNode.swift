@@ -73,6 +73,15 @@ extension PipeNode {
 
         pipeNode.physicsBody = SKPhysicsBody(bodies: [pipePhysicsBody, topPhysicsBody, bottomPhysicsBody])
         pipeNode.physicsBody?.allowsRotation = false
+        pipeNode.physicsBody?.restitution = 0
+
+        if color == .red {
+            pipeNode.physicsBody?.categoryBitMask = BitMask(.redPipe)
+            pipeNode.physicsBody?.fieldBitMask = BitMask(.redPipeField)
+        } else if color == .blue {
+            pipeNode.physicsBody?.categoryBitMask = BitMask(.bluePipe)
+            pipeNode.physicsBody?.fieldBitMask = BitMask(.bluePipeField)
+        }
 
         return pipeNode
     }

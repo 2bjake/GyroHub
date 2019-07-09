@@ -48,9 +48,23 @@ class LevelMapBuilder {
             tileMapNode.addChild(rightAnchor)
         }
 
+        let pipeUpGravity = vector_float3(0, 20, 0)
+
+        let redField = SKFieldNode.linearGravityField(withVector: pipeUpGravity)
+        redField.categoryBitMask = BitMask(.redPipeField)
+        tileMapNode.addChild(redField)
+
+        let blueField = SKFieldNode.linearGravityField(withVector: pipeUpGravity)
+        blueField.categoryBitMask = BitMask(.bluePipeField)
+        tileMapNode.addChild(blueField)
+
         tileMapNode.addChild(character)
 
-        return LevelMap(config: config, tileMapNode: tileMapNode, character: character, pipes: pipes)
+        return LevelMap(config: config,
+                        tileMapNode: tileMapNode,
+                        character: character,
+                        pipes: pipes,
+                        pipeFields: [.red: redField, .blue: blueField])
     }
 
     private func makeGroundNodeAt(column: Int, row: Int) {
@@ -68,7 +82,7 @@ class LevelMapBuilder {
         tileNode.physicsBody?.restitution = 0.0
         tileNode.physicsBody?.isDynamic = false
         tileNode.physicsBody?.categoryBitMask = BitMask(.ground)
-        tileNode.physicsBody?.contactTestBitMask = BitMask(.character | .pipe)
+        tileNode.physicsBody?.contactTestBitMask = BitMask(.character | .allPipes)
         tileMapNode.addChild(tileNode)
     }
 
@@ -90,12 +104,14 @@ class LevelMapBuilder {
         left.position = CGPoint(x: centerPoint.x - tileSize.width / 2 + anchorWidth / 2, y: centerPoint.y)
         left.physicsBody = SKPhysicsBody(rectangleOf: anchorSize)
         left.physicsBody?.isDynamic = false
+        left.physicsBody?.restitution = 0
 
         let right = SKShapeNode(rectOf: anchorSize)
         right.fillColor = .gray
         right.position = CGPoint(x: centerPoint.x + tileSize.width / 2 - anchorWidth / 2, y: centerPoint.y)
         right.physicsBody = SKPhysicsBody(rectangleOf: anchorSize)
         right.physicsBody?.isDynamic = false
+        right.physicsBody?.restitution = 0
 
         return (left, right)
     }

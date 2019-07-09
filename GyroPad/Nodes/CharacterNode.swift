@@ -15,13 +15,15 @@ private let movementSpeed = CGFloat(200)
 class CharacterNode: SKShapeNode {
 
     convenience init(size: CGSize) { //TODO: fix this so that it's the only init
-        let radius = size.width / 3
+        let radius = size.width / 5
         self.init(circleOfRadius: radius)
         fillColor = .orange
         physicsBody = .init(circleOfRadius: radius)
         physicsBody?.allowsRotation = false
         physicsBody?.categoryBitMask = BitMask(.character)
         physicsBody?.contactTestBitMask = BitMask(.ground)
+        physicsBody?.fieldBitMask = 0
+        physicsBody?.isDynamic = true
     }
 
     public func update(deltaTime: TimeInterval, touchDirection: TouchDirection, isAtRope: Bool) {

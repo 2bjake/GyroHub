@@ -11,7 +11,12 @@ import SpriteKit
 extension PhysicsCategory {
     static let character = PhysicsCategory(shift: 1)
     static let ground = PhysicsCategory(shift: 2)
-    static let pipe = PhysicsCategory(shift: 3)
+    static let redPipe = PhysicsCategory(shift: 3)
+    static let bluePipe = PhysicsCategory(shift: 4)
+    static let allPipes = .redPipe | .bluePipe
+    static let redPipeField = PhysicsCategory(shift: 5)
+    static let bluePipeField = PhysicsCategory(shift: 6)
+
 }
 
 extension PhysicsCategory: CustomStringConvertible {
@@ -21,8 +26,10 @@ extension PhysicsCategory: CustomStringConvertible {
             return "character"
         case .ground:
             return "ground"
-        case .pipe:
-            return "pipe"
+        case .redPipe:
+            return "redPipe"
+        case .bluePipe:
+            return "bluePipe"
         default:
             return String(bitMask)
         }

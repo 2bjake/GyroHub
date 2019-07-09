@@ -43,6 +43,7 @@ class LevelMap: SKNode {
     private let tileMapNode: SKTileMapNode
     private let character: CharacterNode
     private let pipes: [PipeNode]
+    private let pipeFields: [UIColor: SKFieldNode]
 
     private var characterCoords: MapCoordinates {
         return coordinatesForPoint(character.position)
@@ -53,11 +54,12 @@ class LevelMap: SKNode {
         return properties.isClimbable
     }
 
-    init(config: MapConfig, tileMapNode: SKTileMapNode, character: CharacterNode, pipes: [PipeNode]) {
+    init(config: MapConfig, tileMapNode: SKTileMapNode, character: CharacterNode, pipes: [PipeNode], pipeFields: [UIColor: SKFieldNode]) {
         self.config = config
         self.tileMapNode = tileMapNode
         self.character = character
         self.pipes = pipes
+        self.pipeFields = pipeFields
         super.init()
 
         addChild(tileMapNode)
@@ -67,8 +69,16 @@ class LevelMap: SKNode {
         fatalError("init(coder:) has not been implemented")
     }
 
+    let pipeSwitchTime = TimeInterval(2)
+    var timeSincePipeSwitch = TimeInterval(0)
     func update(deltaTime: TimeInterval, touchDirection: TouchDirection) {
         character.update(deltaTime: deltaTime, touchDirection: touchDirection, isAtRope: isCharacterAtRope)
+        timeSincePipeSwitch += deltaTime
+        if timeSincePipeSwitch >= pipeSwitchTime {
+            timeSincePipeSwitch = 0
+            pipeFields[.red]?.isEnabled.toggle()
+            pipeFields[.blue]?.isEnabled = !pipeFields[.red]!.isEnabled
+        }
     }
 
     func touchBegan(_ touch: UITouch) {

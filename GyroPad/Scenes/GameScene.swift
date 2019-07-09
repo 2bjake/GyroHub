@@ -58,6 +58,7 @@ class GameScene: SKScene {
         let dt = currentTime - lastUpdateTime
 
         levelMap.update(deltaTime: dt, touchDirection: currentTouchDirection)
+        lastUpdateTime = currentTime
     }
 
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
