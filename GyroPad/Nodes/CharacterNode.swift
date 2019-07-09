@@ -20,8 +20,8 @@ class CharacterNode: SKShapeNode {
         fillColor = .orange
         physicsBody = .init(circleOfRadius: radius)
         physicsBody?.allowsRotation = false
-        physicsBody?.categoryBitMask = BitMask(.character)
-        physicsBody?.contactTestBitMask = BitMask(.ground)
+        physicsBody?.categoryBitMask = .character
+        physicsBody?.contactTestBitMask = .ground
         physicsBody?.fieldBitMask = 0
         physicsBody?.isDynamic = true
     }

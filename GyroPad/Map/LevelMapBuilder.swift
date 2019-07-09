@@ -51,11 +51,11 @@ class LevelMapBuilder {
         let pipeUpGravity = vector_float3(0, 20, 0)
 
         let redField = SKFieldNode.linearGravityField(withVector: pipeUpGravity)
-        redField.categoryBitMask = BitMask(.redPipeField)
+        redField.categoryBitMask = .redPipeField
         tileMapNode.addChild(redField)
 
         let blueField = SKFieldNode.linearGravityField(withVector: pipeUpGravity)
-        blueField.categoryBitMask = BitMask(.bluePipeField)
+        blueField.categoryBitMask = .bluePipeField
         tileMapNode.addChild(blueField)
 
         tileMapNode.addChild(character)
@@ -81,8 +81,8 @@ class LevelMapBuilder {
         tileNode.physicsBody?.linearDamping = 0.6
         tileNode.physicsBody?.restitution = 0.0
         tileNode.physicsBody?.isDynamic = false
-        tileNode.physicsBody?.categoryBitMask = BitMask(.ground)
-        tileNode.physicsBody?.contactTestBitMask = BitMask(.character | .allPipes)
+        tileNode.physicsBody?.categoryBitMask = .ground
+        tileNode.physicsBody?.contactTestBitMask = .character | .allPipes
         tileMapNode.addChild(tileNode)
     }
 

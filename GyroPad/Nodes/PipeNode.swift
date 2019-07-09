@@ -76,11 +76,11 @@ extension PipeNode {
         pipeNode.physicsBody?.restitution = 0
 
         if color == .red {
-            pipeNode.physicsBody?.categoryBitMask = BitMask(.redPipe)
-            pipeNode.physicsBody?.fieldBitMask = BitMask(.redPipeField)
+            pipeNode.physicsBody?.categoryBitMask = .redPipe
+            pipeNode.physicsBody?.fieldBitMask = .redPipeField
         } else if color == .blue {
-            pipeNode.physicsBody?.categoryBitMask = BitMask(.bluePipe)
-            pipeNode.physicsBody?.fieldBitMask = BitMask(.bluePipeField)
+            pipeNode.physicsBody?.categoryBitMask = .bluePipe
+            pipeNode.physicsBody?.fieldBitMask = .bluePipeField
         }
 
         return pipeNode

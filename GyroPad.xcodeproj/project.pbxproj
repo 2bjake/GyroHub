@@ -17,9 +17,9 @@
 		231172BF22C162B100C7053B /* GyroPadUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 231172BE22C162B100C7053B /* GyroPadUITests.swift */; };
 		231172CD22C18B5D00C7053B /* CharacterNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 231172CC22C18B5D00C7053B /* CharacterNode.swift */; };
 		231172CF22C18C6400C7053B /* GyroTileSet.sks in Resources */ = {isa = PBXBuildFile; fileRef = 231172CE22C18C6400C7053B /* GyroTileSet.sks */; };
-		231172D722C26C8C00C7053B /* PhysicsCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 231172D622C26C8C00C7053B /* PhysicsCategory.swift */; };
+		231172D722C26C8C00C7053B /* BitMask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 231172D622C26C8C00C7053B /* BitMask.swift */; };
 		231172E022C4F1AC00C7053B /* MapCoordinates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 231172DF22C4F1AC00C7053B /* MapCoordinates.swift */; };
-		231172E222C4F47000C7053B /* PhysicsCategory+GyroPad.swift in Sources */ = {isa = PBXBuildFile; fileRef = 231172E122C4F47000C7053B /* PhysicsCategory+GyroPad.swift */; };
+		231172E222C4F47000C7053B /* BitMask+GyroPad.swift in Sources */ = {isa = PBXBuildFile; fileRef = 231172E122C4F47000C7053B /* BitMask+GyroPad.swift */; };
 		238C3DA322C50D7E0077CA2B /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 238C3DA222C50D7E0077CA2B /* GameScene.sks */; };
 		238C3DA722C54BEE0077CA2B /* LevelMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 238C3DA622C54BEE0077CA2B /* LevelMap.swift */; };
 		238C3DA922C54DB60077CA2B /* LevelMapBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 238C3DA822C54DB60077CA2B /* LevelMapBuilder.swift */; };
@@ -64,9 +64,9 @@
 		231172C022C162B100C7053B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		231172CC22C18B5D00C7053B /* CharacterNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterNode.swift; sourceTree = "<group>"; };
 		231172CE22C18C6400C7053B /* GyroTileSet.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GyroTileSet.sks; sourceTree = "<group>"; };
-		231172D622C26C8C00C7053B /* PhysicsCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhysicsCategory.swift; sourceTree = "<group>"; };
+		231172D622C26C8C00C7053B /* BitMask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BitMask.swift; sourceTree = "<group>"; };
 		231172DF22C4F1AC00C7053B /* MapCoordinates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapCoordinates.swift; sourceTree = "<group>"; };
-		231172E122C4F47000C7053B /* PhysicsCategory+GyroPad.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PhysicsCategory+GyroPad.swift"; sourceTree = "<group>"; };
+		231172E122C4F47000C7053B /* BitMask+GyroPad.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BitMask+GyroPad.swift"; sourceTree = "<group>"; };
 		238C3DA222C50D7E0077CA2B /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
 		238C3DA622C54BEE0077CA2B /* LevelMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelMap.swift; sourceTree = "<group>"; };
 		238C3DA822C54DB60077CA2B /* LevelMapBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelMapBuilder.swift; sourceTree = "<group>"; };
@@ -130,8 +130,8 @@
 				231172DA22C4582E00C7053B /* Map */,
 				2311729822C162B000C7053B /* AppDelegate.swift */,
 				231172A022C162B000C7053B /* GameViewController.swift */,
-				231172D622C26C8C00C7053B /* PhysicsCategory.swift */,
-				231172E122C4F47000C7053B /* PhysicsCategory+GyroPad.swift */,
+				231172D622C26C8C00C7053B /* BitMask.swift */,
+				231172E122C4F47000C7053B /* BitMask+GyroPad.swift */,
 				231172A222C162B000C7053B /* Main.storyboard */,
 				231172A522C162B100C7053B /* Assets.xcassets */,
 				231172CE22C18C6400C7053B /* GyroTileSet.sks */,
@@ -332,12 +332,12 @@
 				231172E022C4F1AC00C7053B /* MapCoordinates.swift in Sources */,
 				238C3DA722C54BEE0077CA2B /* LevelMap.swift in Sources */,
 				238C3DB122C66C3F0077CA2B /* TileProvider.swift in Sources */,
-				231172D722C26C8C00C7053B /* PhysicsCategory.swift in Sources */,
+				231172D722C26C8C00C7053B /* BitMask.swift in Sources */,
 				238C3DAF22C553660077CA2B /* LevelReader.swift in Sources */,
 				231172A122C162B000C7053B /* GameViewController.swift in Sources */,
 				2311729922C162B000C7053B /* AppDelegate.swift in Sources */,
 				238C3DA922C54DB60077CA2B /* LevelMapBuilder.swift in Sources */,
-				231172E222C4F47000C7053B /* PhysicsCategory+GyroPad.swift in Sources */,
+				231172E222C4F47000C7053B /* BitMask+GyroPad.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
